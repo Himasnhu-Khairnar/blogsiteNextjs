@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { SidebarDemo } from "@/component/Sidemenu";
+import Footer from "@/component/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} w-screen`} >
+
+        <ClerkProvider >
+          <SidebarDemo>
+            {children}
+            <Footer/>
+          </SidebarDemo>
+        </ClerkProvider>
+      </body>
     </html>
   );
 }
