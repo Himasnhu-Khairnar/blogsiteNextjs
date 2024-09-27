@@ -29,7 +29,7 @@ const id = req.nextUrl.searchParams.get("id");
     return NextResponse.json({message: "Data deleted" });
    
 }
-export async function UPDATE(req: NextApiRequest, res: NextApiResponse) {
+export async function PUT(req: NextApiRequest, res: NextApiResponse) {
 const id = req.nextUrl.searchParams.get("id");
  
     await Connectmongodb();
