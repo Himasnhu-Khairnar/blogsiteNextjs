@@ -1,13 +1,13 @@
 import { NextApiHandler } from "next";
 import { Connectmongodb } from "@/lib/ConnectDB";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+
+import { NextRequest, NextResponse } from "next/server";
 import { Blog } from "@/Model/CreatePost";
 type ResponseData = {
   message: string;
 };
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   const data = await req.json();
   await Connectmongodb();
   await Blog.create(data);
@@ -15,13 +15,13 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   return NextResponse.json({ message: "Data received", data });
 }
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   await Connectmongodb();
   const data = await Blog.find();
   return NextResponse.json({ data });
 }
 
-export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
+export async function DELETE(req: NextRequest, res: NextResponse) {
 const id = req.nextUrl.searchParams.get("id");
  
     await Connectmongodb();
@@ -29,7 +29,7 @@ const id = req.nextUrl.searchParams.get("id");
     return NextResponse.json({message: "Data deleted" });
    
 }
-export async function PUT(req: NextApiRequest, res: NextApiResponse) {
+export async function UPDATE(req: NextRequest, res: NextResponse) {
 const id = req.nextUrl.searchParams.get("id");
  
     await Connectmongodb();
