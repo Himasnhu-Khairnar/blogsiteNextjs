@@ -90,23 +90,22 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
             reader.readAsDataURL(file);
         }
     };
-
-    const onSubmit: SubmitHandler<FormData> = async (values) => {
-        const data = {
-            newtitle: values.title,
-            newimage: imagePreview, // Using the image preview
-            newdescription: values.description,
-            newtype: values.type,
-            newauthor: user?.fullName,
-            newauthorImg: user?.imageUrl,
-        };
-        try {
-            await UpdateData(id,data );
-            window.location.reload();
-        } catch (error) {
-            console.error("Failed to update blog:", error);
-        }
+const onSubmit: SubmitHandler<FormData> = async (values) => {
+    const data = {
+        newtitle: values.title,
+        newimage: typeof imagePreview === 'string' ? imagePreview : "", // Ensure it's a string
+        newdescription: values.description,
+        newtype: values.type || "", // Provide default value if undefined
+        newauthor: user?.fullName || "", // Provide default value if undefined
+        newauthorImg: user?.imageUrl || "", // Provide default value if undefined
     };
+    try {
+        await UpdateData(id, data);
+        window.location.reload();
+    } catch (error) {
+        console.error("Failed to update blog:", error);
+    }
+};
 
     return (
         <Form {...form}>
