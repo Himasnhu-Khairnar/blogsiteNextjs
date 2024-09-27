@@ -7,7 +7,7 @@ export function LandingPage() {
   return (
     
 
-    <BackgroundBeamsWithCollision className="flex-col first:items-end first:px-10 first:pb-20 ">
+    <BackgroundBeamsWithCollision className="flex-col  ">
     
       <h2 className="text-2xl relative z-20 md:text-4xl lg:text-6xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
         Transform your ideas into a blog{" "}

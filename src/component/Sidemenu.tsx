@@ -11,6 +11,7 @@ import { BabyIcon, BadgePlusIcon, CircleUser, Home, User, Users2Icon } from "luc
 export function SidebarDemo({ children }: { children: React.ReactNode }) {
   const [name, setName] = useState<string>("Guest");
   const [image, setImage] = useState<string>("/user.svg");
+  const [link,setLink] = useState<string>('/auth/signin/a')
   const { user } = useUser();
 
   // Update name and image when user changes
@@ -18,6 +19,7 @@ export function SidebarDemo({ children }: { children: React.ReactNode }) {
     if (user) {
       setName(user.fullName || "Guest");
       setImage(user.imageUrl || "/user.svg");
+      setLink('/account')
     }
   }, [user]);
 
@@ -75,7 +77,7 @@ export function SidebarDemo({ children }: { children: React.ReactNode }) {
             <SidebarLink
               link={{
                 label: name,
-                href: "/account",
+                href: link,
                 icon: (
                   <UserButton />
                 ),
