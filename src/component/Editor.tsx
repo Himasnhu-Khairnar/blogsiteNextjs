@@ -56,7 +56,7 @@ export default function Editor() {
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     var reader = new FileReader();
 
-    reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(event.target.files?[0]);
     reader.onload = () => {
       setImagePreview(reader.result);
     };
